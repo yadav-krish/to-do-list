@@ -8,10 +8,12 @@ const page = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setMainTask([...mainTask, { title, desc }]);
-    settitle("");
-    setdesc("");
-    console.log(mainTask);
+    if (title.trim() && desc.trim()) {
+      setMainTask([...mainTask, { title, desc }]);
+      settitle("");
+      setdesc("");
+      console.log(mainTask);
+    }
   };
   const deleteHandler = (i) => {
     let copytask = [...mainTask];
@@ -41,11 +43,11 @@ const page = () => {
     });
   }
   return (
-    <>
-      <h1 className="bg-black text-white text-center text-3xl font-bold py-2">
+    <div className="max-w-6xl mx-auto md:px-6 lg:px-8 border border-gray-100 rounded-lg shadow-md">
+      <h1 className="bg-black text-white text-center text-3xl font-bold py-2 rounded-t-lg">
         Krishna Yadav's To-do list
       </h1>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} className="text-center">
         <input
           type="text"
           className="font-semibold border-2 border-zinc-600 my-4 mx-2 px-2  "
@@ -71,7 +73,7 @@ const page = () => {
       <div className="p-8 bg-slate-200 mt-2">
         <ul>{renderTask}</ul>
       </div>
-    </>
+    </div>
   );
 };
 
